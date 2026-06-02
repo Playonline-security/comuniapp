@@ -115,7 +115,7 @@ npm run dev
 
 Abre la URL que indique Vite, normalmente:
 
-`http://localhost:5173/comuniAppFrontend/`
+`http://localhost:5173/comuniapp/`
 
 ## Build de producción
 
@@ -135,7 +135,7 @@ npm run preview
 
 La aplicación está configurada con:
 
-- **`base`**: `/comuniAppFrontend/` en `vite.config.js`
+- **`base`**: `/comuniapp/` en `vite.config.js`
 - **`HashRouter`**: evita errores 404 al recargar rutas en hosting estático
 
 ```bash
@@ -146,7 +146,7 @@ Este comando ejecuta `predeploy` (build) y publica `dist/` con **gh-pages**. Req
 
 URL típica de despliegue:
 
-`https://<usuario>.github.io/comuniAppFrontend/`
+`https://<usuario>.github.io/comuniapp/`
 
 ---
 
@@ -168,7 +168,7 @@ En el navegador: **DevTools → Application → Local Storage** → eliminar la 
 
 ## Documentación de pruebas
 
-Consulta **[TESTING.md](./TESTING.md)** para la estrategia de pruebas, comandos y reporte de cobertura (mínimo **80%**).
+Consulta **[TESTING.md](./TESTING.md)** para la estrategia de pruebas, comandos y reporte de cobertura.
 
 ---
 
