@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { CATEGORIES } from '../../constants/categories';
 import { getAverageRating, formatPrice } from '../../utils/serviceHelpers';
 import { RatingDisplay } from './RatingStars';
-import Button from './Button';
 
 export default function ServiceCard({ service }) {
   const categoryLabel = CATEGORIES.find((c) => c.id === service.category)?.label || service.category;
@@ -11,7 +10,11 @@ export default function ServiceCard({ service }) {
   const image = service.images?.[0];
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-brand-500/10 bg-white shadow-md transition duration-200 hover:-translate-y-1 hover:shadow-xl focus-within:ring-2 focus-within:ring-brand-500/40">
+    <Link
+      to={`/servicio/${service.id}`}
+      aria-label={`Ver detalles de ${service.title}`}
+      className="group flex flex-col overflow-hidden rounded-2xl border border-brand-500/10 bg-white shadow-md transition duration-200 hover:-translate-y-1 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60 focus-visible:ring-offset-2"
+    >
       <div className="relative h-56 overflow-hidden bg-gray-100">
         {image && (
           <img
@@ -35,10 +38,10 @@ export default function ServiceCard({ service }) {
       </div>
       <div className="flex flex-wrap items-center justify-between gap-2 border-t border-gray-100 bg-gray-50/50 px-4 py-3">
         <RatingDisplay average={avg} count={count} size="sm" />
-        <Link to={`/servicio/${service.id}`} className="ml-auto">
-          <Button size="sm">Detalles</Button>
-        </Link>
+        <span className="ml-auto inline-flex items-center justify-center rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors duration-200 group-hover:bg-brand-800">
+          Detalles
+        </span>
       </div>
-    </article>
+    </Link>
   );
 }
