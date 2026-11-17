@@ -13,6 +13,11 @@ const LOGIN_FEATURES = [
   { icon: HeartHandshake, title: 'Comunidad Unida', description: '1,000+ mistrateños conectados' },
 ];
 
+const DEMO_ACCOUNTS = [
+  { label: 'Entrar como residente', email: 'alicia@residente.com', password: 'demo1234' },
+  { label: 'Entrar como emprendedor', email: 'martha@cafe.com', password: 'demo1234' },
+];
+
 export default function LoginView() {
   const { login } = useAuth();
   const { showToast } = useToast();
@@ -38,6 +43,12 @@ export default function LoginView() {
     }
   };
 
+  const handleDemoLogin = (account) => {
+    if (login(account.email, account.password)) {
+      navigate('/home');
+    }
+  };
+
   return (
     <AuthLayout
       title="Bienvenido de Nuevo"
@@ -51,6 +62,61 @@ export default function LoginView() {
       </div>
 
       <div className="rounded-2xl border border-brand-200/50 bg-white p-8 shadow-xl">
+        <section
+          aria-labelledby="demo-access-title"
+          aria-describedby="demo-access-help"
+          className="rounded-2xl border border-brand-200/70 bg-brand-50/70 p-5"
+        >
+          <div className="flex flex-wrap items-center gap-2">
+            <h3 id="demo-access-title" className="text-sm font-semibold text-brand-800">
+              Acceso de demostración
+            </h3>
+            <span className="rounded-full bg-brand-600 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide text-white">
+              Prototipo
+            </span>
+          </div>
+          <p id="demo-access-help" className="mt-2 text-sm leading-relaxed text-gray-600">
+            Estos botones son solo un atajo para explorar el prototipo interactivo. También puedes
+            iniciar sesión manualmente con las cuentas de demostración.
+          </p>
+          <div className="mt-4 grid gap-2">
+            {DEMO_ACCOUNTS.map((account, index) => (
+              <Button
+                key={account.email}
+                type="button"
+                size="sm"
+                variant={index === 0 ? 'primary' : 'secondary'}
+                onClick={() => handleDemoLogin(account)}
+              >
+                {account.label}
+              </Button>
+            ))}
+          </div>
+          <div className="mt-4 space-y-1.5 border-t border-brand-200/70 pt-3 text-xs text-gray-600">
+            <p>
+              <span className="font-semibold text-gray-700">Residente:</span>{' '}
+              <code className="font-mono">alicia@residente.com</code>
+            </p>
+            <p>
+              <span className="font-semibold text-gray-700">Emprendedor:</span>{' '}
+              <code className="font-mono">martha@cafe.com</code>
+            </p>
+            <p>
+              <span className="font-semibold text-gray-700">Contraseña para ambas:</span>{' '}
+              <code className="font-mono">demo1234</code>
+            </p>
+            <p className="text-gray-500">Son cuentas ficticias del prototipo, no usuarios reales.</p>
+          </div>
+        </section>
+
+        <div className="my-6 flex items-center gap-3" aria-hidden="true">
+          <span className="h-px flex-1 bg-gray-200" />
+          <span className="text-xs font-medium uppercase tracking-wide text-gray-500">
+            o ingresa manualmente
+          </span>
+          <span className="h-px flex-1 bg-gray-200" />
+        </div>
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <Input
             id="login-email"
@@ -92,10 +158,6 @@ export default function LoginView() {
             Regístrate aquí
           </Link>
         </div>
-
-        <p className="mt-4 text-center text-xs text-gray-400">
-          Demo: alicia@residente.com o martha@cafe.com — contraseña demo1234
-        </p>
       </div>
     </AuthLayout>
   );
