@@ -22,8 +22,8 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/30 bg-white/85 backdrop-blur-md shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-8">
-        <Logo />
-        <nav className="flex items-center gap-3">
+        <Logo textClassName="max-[419px]:hidden" />
+        <nav className="flex items-center gap-2 sm:gap-3">
           {!isAuthenticated ? (
             <>
               <Link to="/login">
