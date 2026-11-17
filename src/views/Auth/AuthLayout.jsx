@@ -45,13 +45,18 @@ export default function AuthLayout({
         </div>
       </div>
 
-      <div className="relative flex flex-1 flex-col items-center justify-center bg-gradient-to-br from-brand-500/[0.03] via-white to-accent-400/[0.03] px-6 py-12 sm:px-12">
+      <div className="relative flex flex-1 flex-col items-center justify-center bg-gradient-to-br from-brand-500/[0.03] via-white to-accent-400/[0.03] px-6 pb-12 pt-20 sm:px-12 sm:py-12">
         {showBack && (
           <Link
             to="/"
-            className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-gray-600 transition hover:bg-brand-50 hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 sm:left-8 sm:top-8"
+            className="group absolute left-4 top-4 inline-flex min-h-11 items-center gap-2.5 rounded-2xl border border-gray-200 bg-white px-3.5 py-2 text-sm font-semibold text-gray-700 shadow-sm transition hover:border-brand-300 hover:bg-brand-50 hover:text-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 active:scale-[0.99] sm:left-8 sm:top-8"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <span
+              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-700 transition group-hover:bg-brand-100"
+              aria-hidden
+            >
+              <ArrowLeft className="h-4 w-4" />
+            </span>
             Volver al Inicio
           </Link>
         )}
