@@ -29,4 +29,16 @@ describe('Home filtering', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Turismo' }));
     expect(screen.getByText(/Guía Turística/i)).toBeInTheDocument();
   });
+
+  it('limpia los filtros desde el estado vacío', async () => {
+    renderWithProviders(<HomeView />, { route: '/home' });
+    const search = screen.getByPlaceholderText(/buscar productos/i);
+    await userEvent.type(search, 'zzzzinexistente');
+
+    expect(screen.getByText(/No encontramos servicios/i)).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: /limpiar filtros/i }));
+
+    expect(screen.getByPlaceholderText(/buscar productos/i)).toHaveValue('');
+    expect(screen.getByText(/Café Orgánico/i)).toBeInTheDocument();
+  });
 });
