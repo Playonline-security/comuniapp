@@ -76,7 +76,7 @@ export default function LoginView() {
           />
           <button
             type="button"
-            className="text-xs font-medium text-[#008A4B] hover:underline"
+            className="rounded text-xs font-medium text-[#008A4B] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
             onClick={() => showToast('Recuperación de contraseña no disponible en la demo.', 'info')}
           >
             ¿Olvidaste tu contraseña?

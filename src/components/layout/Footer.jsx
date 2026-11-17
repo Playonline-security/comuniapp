@@ -17,12 +17,18 @@ export default function Footer() {
             <h4 className="mb-4 font-bold text-white">Acceso rápido</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#/registro" className="hover:text-brand-200">
+                <a
+                  href="#/registro"
+                  className="rounded transition-colors hover:text-brand-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+                >
                   Registrarse
                 </a>
               </li>
               <li>
-                <a href="#/login" className="hover:text-brand-200">
+                <a
+                  href="#/login"
+                  className="rounded transition-colors hover:text-brand-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+                >
                   Iniciar sesión
                 </a>
               </li>

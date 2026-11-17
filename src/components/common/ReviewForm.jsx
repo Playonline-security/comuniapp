@@ -47,11 +47,19 @@ export default function ReviewForm({ onSubmit }) {
           maxLength={500}
           rows={4}
           placeholder="Comparte tu experiencia (mínimo 10 caracteres)..."
+          aria-invalid={error ? 'true' : undefined}
+          aria-describedby={error ? 'review-comment-error' : 'review-comment-hint'}
           className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
         />
-        <p className="mt-1 text-xs text-gray-500">{comment.length}/500 caracteres</p>
+        <p id="review-comment-hint" className="mt-1 text-xs text-gray-500">
+          {comment.length}/500 caracteres
+        </p>
       </div>
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && (
+        <p id="review-comment-error" role="alert" className="text-sm text-red-600">
+          {error}
+        </p>
+      )}
       <Button type="submit">Publicar reseña</Button>
     </form>
   );

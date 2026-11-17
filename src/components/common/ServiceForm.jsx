@@ -50,7 +50,7 @@ export default function ServiceForm({ initial, onSubmit, onCancel }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
-      <section className="rounded-xl border border-gray-200 bg-white p-6">
+      <section className="rounded-3xl border border-gray-200 bg-white p-6">
         <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold">
           <FileText className="h-5 w-5 text-brand-600" />
           Información básica
@@ -66,11 +66,14 @@ export default function ServiceForm({ initial, onSubmit, onCancel }) {
             hint={`${form.title.length}/100`}
           />
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-gray-700">Categoría *</label>
+            <label htmlFor="service-category" className="mb-1.5 block text-sm font-medium text-gray-700">
+              Categoría *
+            </label>
             <select
+              id="service-category"
               value={form.category}
               onChange={(e) => update('category', e.target.value)}
-              className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+              className="w-full rounded-2xl border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
             >
               {categoryOptions.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -81,32 +84,54 @@ export default function ServiceForm({ initial, onSubmit, onCancel }) {
           </div>
         </div>
         <div className="mt-4">
-          <label className="mb-1.5 block text-sm font-medium text-gray-700">Descripción detallada *</label>
+          <label htmlFor="service-description" className="mb-1.5 block text-sm font-medium text-gray-700">
+            Descripción detallada *
+          </label>
           <textarea
+            id="service-description"
             value={form.description}
             onChange={(e) => update('description', e.target.value)}
             maxLength={500}
             rows={5}
-            className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
+            aria-invalid={errors.description ? 'true' : undefined}
+            aria-describedby={errors.description ? 'service-description-error' : 'service-description-hint'}
+            className="w-full rounded-2xl border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
           />
-          <p className="text-xs text-gray-500">{form.description.length}/500</p>
-          {errors.description && <p className="text-xs text-red-600">{errors.description}</p>}
+          <p id="service-description-hint" className="text-xs text-gray-500">
+            {form.description.length}/500
+          </p>
+          {errors.description && (
+            <p id="service-description-error" role="alert" className="text-xs text-red-600">
+              {errors.description}
+            </p>
+          )}
         </div>
       </section>
 
-      <section className="rounded-xl border border-gray-200 bg-white p-6">
+      <section className="rounded-3xl border border-gray-200 bg-white p-6">
         <h2 className="mb-4 text-lg font-semibold">Información adicional</h2>
         <div className="grid gap-4 md:grid-cols-3">
           <Input
             label="Precio *"
+            name="price"
             type="number"
             min="1"
             value={form.price}
             onChange={(e) => update('price', e.target.value)}
             error={errors.price}
           />
-          <Input label="Horario" value={form.schedule} onChange={(e) => update('schedule', e.target.value)} />
-          <Input label="Dirección (opcional)" value={form.address} onChange={(e) => update('address', e.target.value)} />
+          <Input
+            label="Horario"
+            name="schedule"
+            value={form.schedule}
+            onChange={(e) => update('schedule', e.target.value)}
+          />
+          <Input
+            label="Dirección (opcional)"
+            name="address"
+            value={form.address}
+            onChange={(e) => update('address', e.target.value)}
+          />
         </div>
         <div className="mt-4">
           <p className="mb-2 text-sm font-medium text-gray-700">Opciones de atención</p>
@@ -116,7 +141,8 @@ export default function ServiceForm({ initial, onSubmit, onCancel }) {
                 key={opt}
                 type="button"
                 onClick={() => toggleDelivery(opt)}
-                className={`rounded-xl border-2 px-4 py-2 text-sm font-medium capitalize transition ${
+                aria-pressed={form.deliveryOptions.includes(opt)}
+                className={`rounded-xl border-2 px-4 py-2 text-sm font-medium capitalize transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 ${
                   form.deliveryOptions.includes(opt)
                     ? 'border-brand-500 bg-brand-50 text-brand-700'
                     : 'border-gray-300 text-gray-600 hover:border-brand-200'
@@ -129,7 +155,7 @@ export default function ServiceForm({ initial, onSubmit, onCancel }) {
         </div>
       </section>
 
-      <section className="rounded-xl border border-gray-200 bg-white p-6">
+      <section className="rounded-3xl border border-gray-200 bg-white p-6">
         <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold">
           <User className="h-5 w-5 text-brand-600" />
           Imagen del servicio *

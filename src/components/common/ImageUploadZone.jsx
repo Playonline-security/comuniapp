@@ -30,6 +30,13 @@ export default function ImageUploadZone({ value, onChange, error }) {
     e.target.value = '';
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      inputRef.current?.click();
+    }
+  };
+
   const displayError = error || localError;
 
   if (value) {
@@ -39,7 +46,7 @@ export default function ImageUploadZone({ value, onChange, error }) {
         <button
           type="button"
           onClick={() => onChange(null)}
-          className="absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full bg-red-500 text-white shadow-md hover:bg-red-600"
+          className="absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full bg-red-500 text-white shadow-md transition hover:bg-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
           aria-label="Quitar imagen"
         >
           <X className="h-4 w-4" />
@@ -53,7 +60,9 @@ export default function ImageUploadZone({ value, onChange, error }) {
       <div
         role="button"
         tabIndex={0}
-        onKeyDown={(e) => e.key === 'Enter' && inputRef.current?.click()}
+        aria-invalid={displayError ? 'true' : undefined}
+        aria-describedby={displayError ? 'image-upload-error' : undefined}
+        onKeyDown={handleKeyDown}
         onClick={() => inputRef.current?.click()}
         onDragOver={(e) => {
           e.preventDefault();
@@ -61,7 +70,7 @@ export default function ImageUploadZone({ value, onChange, error }) {
         }}
         onDragLeave={() => setDragOver(false)}
         onDrop={handleDrop}
-        className={`flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-6 py-12 transition ${
+        className={`flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-6 py-12 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 ${
           dragOver
             ? 'border-brand-500 bg-brand-50 scale-[1.01]'
             : 'border-gray-300 bg-gray-50/80 hover:border-brand-400 hover:bg-brand-50/50'
@@ -79,7 +88,11 @@ export default function ImageUploadZone({ value, onChange, error }) {
         </p>
         <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleChange} />
       </div>
-      {displayError && <p className="mt-2 text-xs text-red-600">{displayError}</p>}
+      {displayError && (
+        <p id="image-upload-error" role="alert" className="mt-2 text-xs text-red-600">
+          {displayError}
+        </p>
+      )}
     </div>
   );
 }

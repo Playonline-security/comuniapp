@@ -49,7 +49,7 @@ export default function AuthLayout({
         {showBack && (
           <Link
             to="/"
-            className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-gray-600 transition hover:bg-brand-50 hover:text-brand-700 sm:left-8 sm:top-8"
+            className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-gray-600 transition hover:bg-brand-50 hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 sm:left-8 sm:top-8"
           >
             <ArrowLeft className="h-4 w-4" />
             Volver al Inicio

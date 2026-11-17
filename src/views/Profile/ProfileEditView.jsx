@@ -53,7 +53,7 @@ export default function ProfileEditView() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <section className="rounded-3xl border border-gray-200 bg-white p-6">
             <h2 className="mb-4 text-lg font-semibold text-gray-900">Foto de perfil</h2>
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <div className="flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-full border-4 border-gray-200 bg-brand-600 text-4xl font-bold text-white">
@@ -64,28 +64,30 @@ export default function ProfileEditView() {
                 )}
               </div>
               <div>
-                <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-700">
+                <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-brand-700 focus-within:ring-2 focus-within:ring-brand-500 focus-within:ring-offset-2">
                   <Upload className="h-4 w-4" />
                   Subir foto
-                  <input type="file" accept="image/*" className="hidden" onChange={handleAvatar} />
+                  <input type="file" accept="image/*" className="sr-only" onChange={handleAvatar} />
                 </label>
                 <p className="mt-2 text-sm text-gray-500">Formatos: JPG, PNG. Tamaño máximo: 5MB</p>
               </div>
             </div>
           </section>
 
-          <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <section className="rounded-3xl border border-gray-200 bg-white p-6">
             <h2 className="mb-4 text-lg font-semibold text-gray-900">Información básica</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <Input
                 label="Nombre completo *"
+                name="name"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 required
               />
-              <Input label="Correo electrónico" value={profile.email} disabled />
+              <Input label="Correo electrónico" name="email" value={profile.email} disabled />
               <Input
                 label="Teléfono / WhatsApp"
+                name="phone"
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
               />
@@ -93,51 +95,60 @@ export default function ProfileEditView() {
           </section>
 
           {isEntrepreneur && (
-            <section className="rounded-xl border border-gray-200 bg-white p-6">
+            <section className="rounded-3xl border border-gray-200 bg-white p-6">
               <h2 className="mb-4 text-lg font-semibold text-gray-900">Perfil profesional</h2>
               <Input
                 label="Nombre del negocio"
+                name="businessName"
                 value={form.businessName}
                 onChange={(e) => setForm({ ...form, businessName: e.target.value })}
                 className="mb-4"
               />
-              <label className="mb-1.5 block text-sm font-medium text-gray-700">Sobre ti</label>
+              <label htmlFor="profile-bio" className="mb-1.5 block text-sm font-medium text-gray-700">
+                Sobre ti
+              </label>
               <textarea
+                id="profile-bio"
                 value={form.bio}
                 onChange={(e) => setForm({ ...form, bio: e.target.value })}
                 maxLength={500}
                 rows={4}
-                className="w-full rounded-xl border border-gray-300 px-4 py-3"
+                className="w-full rounded-2xl border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
               />
               <p className="text-right text-xs text-gray-500">{form.bio.length}/500</p>
             </section>
           )}
 
           {!isEntrepreneur && (
-            <section className="rounded-xl border border-gray-200 bg-white p-6">
-              <h2 className="mb-4 text-lg font-semibold text-gray-900">Sobre ti</h2>
+            <section className="rounded-3xl border border-gray-200 bg-white p-6">
+              <label htmlFor="profile-bio" className="mb-4 block text-lg font-semibold text-gray-900">
+                Sobre ti
+              </label>
               <textarea
+                id="profile-bio"
                 value={form.bio}
                 onChange={(e) => setForm({ ...form, bio: e.target.value })}
                 maxLength={500}
                 rows={4}
-                className="w-full rounded-xl border border-gray-300 px-4 py-3"
+                className="w-full rounded-2xl border-2 border-gray-200 px-4 py-3 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
               />
               <p className="text-right text-xs text-gray-500">{form.bio.length}/500</p>
             </section>
           )}
 
-          <section className="rounded-xl border border-gray-200 bg-white p-6">
+          <section className="rounded-3xl border border-gray-200 bg-white p-6">
             <h2 className="mb-4 text-lg font-semibold text-gray-900">Redes sociales</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <Input
                 label="Instagram"
+                name="instagram"
                 value={form.instagram}
                 onChange={(e) => setForm({ ...form, instagram: e.target.value })}
                 placeholder="@usuario"
               />
               <Input
                 label="Facebook"
+                name="facebook"
                 value={form.facebook}
                 onChange={(e) => setForm({ ...form, facebook: e.target.value })}
                 placeholder="@usuario"

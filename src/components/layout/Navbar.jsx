@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronDown, LogOut, Home, LayoutGrid, UserPen } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -9,6 +9,17 @@ export default function Navbar() {
   const { user, isAuthenticated, isEntrepreneur, logout, getCurrentUser } = useAuth();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!open) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [open]);
   const profile = getCurrentUser();
 
   const handleLogout = () => {
@@ -40,7 +51,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setOpen(!open)}
-                className="flex items-center gap-3 rounded-2xl border-l border-gray-200 pl-4 transition hover:bg-gray-50"
+                className="flex items-center gap-3 rounded-2xl border-l border-gray-200 pl-4 transition hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
                 aria-expanded={open}
                 aria-haspopup="true"
               >
@@ -56,7 +67,13 @@ export default function Navbar() {
               </button>
               {open && (
                 <>
-                  <button type="button" className="fixed inset-0 z-40" onClick={() => setOpen(false)} aria-label="Cerrar menú" />
+                  <button
+                    type="button"
+                    className="fixed inset-0 z-40 cursor-default"
+                    onClick={() => setOpen(false)}
+                    aria-label="Cerrar menú"
+                    tabIndex={-1}
+                  />
                   <div className="absolute right-0 z-50 mt-2 w-56 rounded-2xl border border-gray-100 bg-white py-2 shadow-xl">
                     <div className="border-b border-gray-100 px-4 py-2">
                       <p className="text-sm font-semibold">{user.name}</p>
@@ -64,7 +81,7 @@ export default function Navbar() {
                     </div>
                     <Link
                       to="/home"
-                      className="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-brand-50"
+                      className="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-brand-50 focus-visible:bg-brand-50 focus-visible:outline-none"
                       onClick={() => setOpen(false)}
                     >
                       <Home className="h-4 w-4 text-brand-600" />
@@ -72,7 +89,7 @@ export default function Navbar() {
                     </Link>
                     <Link
                       to="/perfil"
-                      className="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-brand-50"
+                      className="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-brand-50 focus-visible:bg-brand-50 focus-visible:outline-none"
                       onClick={() => setOpen(false)}
                     >
                       <UserPen className="h-4 w-4 text-brand-600" />
@@ -81,7 +98,7 @@ export default function Navbar() {
                     {isEntrepreneur && (
                       <Link
                         to="/emprendedor"
-                        className="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-brand-50"
+                        className="flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-brand-50 focus-visible:bg-brand-50 focus-visible:outline-none"
                         onClick={() => setOpen(false)}
                       >
                         <LayoutGrid className="h-4 w-4 text-brand-600" />
@@ -90,7 +107,7 @@ export default function Navbar() {
                     )}
                     <button
                       type="button"
-                      className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm text-red-600 hover:bg-red-50"
+                      className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm text-red-600 hover:bg-red-50 focus-visible:bg-red-50 focus-visible:outline-none"
                       onClick={handleLogout}
                     >
                       <LogOut className="h-4 w-4" />

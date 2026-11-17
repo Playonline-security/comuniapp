@@ -61,4 +61,17 @@ describe('Navbar', () => {
     fireEvent.click(screen.getByText('Cerrar sesión'));
     expect(screen.getByText('Ingresar')).toBeInTheDocument();
   });
+
+  it('cierra el menú de usuario con Escape', () => {
+    const state = loadState();
+    state.session = { id: 'user-alicia', name: 'Alicia', email: 'alicia@residente.com', role: 'residente' };
+    saveState(state);
+    renderNavbar();
+
+    fireEvent.click(screen.getByRole('button', { expanded: false }));
+    expect(screen.getByText('Cerrar sesión')).toBeInTheDocument();
+
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(screen.queryByText('Cerrar sesión')).not.toBeInTheDocument();
+  });
 });
