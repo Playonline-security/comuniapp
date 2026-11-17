@@ -26,7 +26,7 @@ export default function HomeView() {
     <MainLayout>
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-8">
         <div className="rounded-3xl bg-brand-600 p-8 text-white shadow-lg md:p-12">
-          <h1 className="text-3xl font-bold md:text-4xl">¡Hola, {greeting}! 👋</h1>
+          <h1 className="text-3xl font-bold md:text-4xl">¡Hola, {greeting}!</h1>
           <p className="mt-2 text-brand-100">Contacta con más de 300 emprendedores en tu área</p>
         </div>
 
