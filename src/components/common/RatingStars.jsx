@@ -61,10 +61,10 @@ export function RatingDisplay({ average, count, size = 'sm' }) {
     return <span className="text-xs font-medium text-gray-500">Sin reseñas aún</span>;
   }
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-1.5">
       <RatingStars value={Math.round(average)} readonly size={size} />
-      <span className="text-sm font-semibold text-brand-600">{average.toFixed(1)} / 5</span>
-      <span className="text-xs text-gray-500">({count})</span>
+      <span className="whitespace-nowrap text-sm font-semibold text-brand-600">{average.toFixed(1)} / 5</span>
+      <span className="whitespace-nowrap text-xs text-gray-500">({count})</span>
     </div>
   );
 }

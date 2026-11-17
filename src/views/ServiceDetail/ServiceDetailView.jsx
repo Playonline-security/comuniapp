@@ -87,10 +87,10 @@ export default function ServiceDetailView() {
           </div>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-3">
-            <div className="space-y-8 lg:col-span-2">
+            <div className="order-2 min-w-0 space-y-8 lg:order-1 lg:col-span-2">
               <section>
                 <h2 className="mb-4 text-xl font-bold">Descripción del Servicio</h2>
-                <p className="whitespace-pre-line leading-relaxed text-gray-700">
+                <p className="max-w-prose whitespace-pre-line leading-relaxed text-gray-700">
                   {service.longDescription || service.description}
                 </p>
               </section>
@@ -114,7 +114,7 @@ export default function ServiceDetailView() {
               </section>
             </div>
 
-            <aside className="space-y-6">
+            <aside className="order-1 space-y-6 lg:order-2">
               <div className="rounded-3xl border border-brand-200/50 bg-white p-6 shadow">
                 <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-brand-500 to-brand-600 text-3xl font-bold text-white">
                   {service.entrepreneurName.charAt(0)}
