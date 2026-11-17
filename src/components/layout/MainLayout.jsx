@@ -1,6 +1,5 @@
 import Navbar from './Navbar';
 import Footer from './Footer';
-import ToastContainer from '../common/ToastContainer';
 
 export default function MainLayout({ children, showFooter = true }) {
   return (
@@ -8,7 +7,6 @@ export default function MainLayout({ children, showFooter = true }) {
       <Navbar />
       <main className="flex-1">{children}</main>
       {showFooter && <Footer />}
-      <ToastContainer />
     </div>
   );
 }

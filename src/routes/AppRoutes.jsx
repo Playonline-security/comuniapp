@@ -3,6 +3,7 @@ import { ToastProvider } from '../context/ToastContext';
 import { AuthProvider } from '../context/AuthContext';
 import { ServiceProvider } from '../context/ServiceContext';
 import { ProtectedRoute } from '../components/layout/ProtectedRoute';
+import ToastContainer from '../components/common/ToastContainer';
 import WelcomeView from '../views/Welcome/WelcomeView';
 import LoginView from '../views/Auth/LoginView';
 import RegisterView from '../views/Auth/RegisterView';
@@ -65,6 +66,7 @@ export default function AppRoutes() {
               />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
+            <ToastContainer />
           </ServiceProvider>
         </AuthProvider>
       </ToastProvider>
