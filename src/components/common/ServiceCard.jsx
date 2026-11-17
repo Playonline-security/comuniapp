@@ -33,9 +33,9 @@ export default function ServiceCard({ service }) {
         </p>
         <p className="text-lg font-bold text-brand-600">{formatPrice(service.price)}</p>
       </div>
-      <div className="flex items-center justify-between border-t border-gray-100 bg-gray-50/50 px-4 py-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-t border-gray-100 bg-gray-50/50 px-4 py-3">
         <RatingDisplay average={avg} count={count} size="sm" />
-        <Link to={`/servicio/${service.id}`}>
+        <Link to={`/servicio/${service.id}`} className="ml-auto">
           <Button size="sm">Detalles</Button>
         </Link>
       </div>
