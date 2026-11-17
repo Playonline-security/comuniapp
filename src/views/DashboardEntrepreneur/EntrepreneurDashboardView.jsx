@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useServices } from '../../context/ServiceContext';
@@ -5,13 +6,21 @@ import { Eye, Plus, Store } from 'lucide-react';
 import MainLayout from '../../components/layout/MainLayout';
 import BackButton from '../../components/common/BackButton';
 import Button from '../../components/common/Button';
+import ConfirmDialog from '../../components/common/ConfirmDialog';
 import { formatPrice, getAverageRating } from '../../utils/serviceHelpers';
 import { RatingDisplay } from '../../components/common/RatingStars';
 
 export default function EntrepreneurDashboardView() {
   const { user } = useAuth();
   const { services, deleteService } = useServices();
+  const [serviceToDelete, setServiceToDelete] = useState(null);
   const mine = services.filter((s) => s.entrepreneurId === user?.id);
+
+  const handleConfirmDelete = () => {
+    if (!serviceToDelete) return;
+    deleteService(serviceToDelete.id);
+    setServiceToDelete(null);
+  };
 
   return (
     <MainLayout>
@@ -67,7 +76,7 @@ export default function EntrepreneurDashboardView() {
                     Editar
                   </Button>
                 </Link>
-                <Button variant="danger" size="sm" onClick={() => deleteService(service.id)}>
+                <Button variant="danger" size="sm" onClick={() => setServiceToDelete(service)}>
                   Eliminar
                 </Button>
               </div>
@@ -75,6 +84,20 @@ export default function EntrepreneurDashboardView() {
           ))}
         </div>
       </div>
+
+      <ConfirmDialog
+        open={Boolean(serviceToDelete)}
+        title="Eliminar publicación"
+        description={
+          serviceToDelete
+            ? `¿Seguro que quieres eliminar “${serviceToDelete.title}”? Esta acción no se puede deshacer.`
+            : ''
+        }
+        confirmLabel="Eliminar"
+        cancelLabel="Cancelar"
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setServiceToDelete(null)}
+      />
     </MainLayout>
   );
 }
