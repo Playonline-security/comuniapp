@@ -1,7 +1,8 @@
 const variants = {
-  primary: 'bg-gradient-to-r from-brand-500 to-brand-600 text-white hover:from-brand-600 hover:to-brand-700 shadow-md',
+  primary: 'bg-brand-600 text-white hover:bg-brand-800 shadow-sm',
   secondary: 'bg-white text-gray-700 border-2 border-gray-200 hover:border-brand-200 hover:bg-brand-50',
   accent: 'bg-accent-400 text-[#461901] hover:bg-accent-500 font-semibold',
+  light: 'bg-white text-brand-800 border-2 border-white hover:bg-brand-50 shadow-sm',
   danger: 'bg-red-600 text-white hover:bg-red-700',
   ghost: 'bg-transparent text-gray-600 hover:bg-gray-100',
 };

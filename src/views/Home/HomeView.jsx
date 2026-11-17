@@ -25,7 +25,7 @@ export default function HomeView() {
   return (
     <MainLayout>
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-8">
-        <div className="rounded-3xl bg-gradient-to-r from-brand-500 to-brand-600 p-8 text-white shadow-lg md:p-12">
+        <div className="rounded-3xl bg-brand-600 p-8 text-white shadow-lg md:p-12">
           <h1 className="text-3xl font-bold md:text-4xl">¡Hola, {greeting}! 👋</h1>
           <p className="mt-2 text-brand-100">Contacta con más de 300 emprendedores en tu área</p>
         </div>
@@ -72,7 +72,7 @@ export default function HomeView() {
                 aria-pressed={category === cat.id}
                 className={`shrink-0 rounded-3xl px-5 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 ${
                   category === cat.id
-                    ? 'bg-gradient-to-r from-brand-500 to-brand-600 text-white shadow-md'
+                    ? 'bg-brand-600 text-white shadow-sm'
                     : 'border-2 border-gray-200 bg-white text-gray-700 hover:border-brand-200'
                 }`}
               >

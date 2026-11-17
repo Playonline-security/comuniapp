@@ -82,13 +82,9 @@ export default function WelcomeView() {
                 Únete a la Comunidad
               </Button>
             </Link>
-            <Link to="/home">
-              <Button
-                size="lg"
-                className="min-w-[220px] !border-2 !border-[rgba(0,212,146,0.3)] !bg-[#57D796] !text-black shadow-md hover:!brightness-105"
-              >
-                Explorar Servicios
-                <ChevronRight className="ml-2 inline h-5 w-5" />
+            <Link to="/login">
+              <Button variant="light" size="lg" className="min-w-[220px]">
+                Ya tengo cuenta
               </Button>
             </Link>
           </div>
@@ -177,7 +173,7 @@ export default function WelcomeView() {
 
       {/* CTA final */}
       <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-8">
-        <div className="overflow-hidden rounded-3xl bg-gradient-to-r from-brand-500 to-brand-600 px-6 py-16 text-center shadow-xl sm:px-16">
+        <div className="overflow-hidden rounded-3xl bg-brand-600 px-6 py-16 text-center shadow-xl sm:px-16">
           <div className="absolute inset-0 opacity-10 pointer-events-none" aria-hidden />
           <h2 className="text-3xl font-bold text-white sm:text-4xl">¿Listo para unirte a tu comunidad?</h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-brand-100">

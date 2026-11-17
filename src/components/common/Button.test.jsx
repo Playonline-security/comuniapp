@@ -14,4 +14,17 @@ describe('Button', () => {
     render(<Button variant="danger">Eliminar</Button>);
     expect(screen.getByRole('button')).toHaveClass('bg-red-600');
   });
+
+  it('usa color sólido en la variante primary', () => {
+    render(<Button>Guardar</Button>);
+    const button = screen.getByRole('button');
+
+    expect(button).toHaveClass('bg-brand-600');
+    expect(button).not.toHaveClass('bg-gradient-to-r');
+  });
+
+  it('aplica variante light', () => {
+    render(<Button variant="light">Cuenta</Button>);
+    expect(screen.getByRole('button')).toHaveClass('bg-white', 'text-brand-800');
+  });
 });

@@ -26,7 +26,7 @@ export default function AuthLayout({
 }) {
   return (
     <div className="flex min-h-screen flex-col lg:flex-row">
-      <div className="relative hidden min-h-[320px] flex-1 overflow-hidden bg-gradient-to-br from-brand-600 to-[#004f3b] lg:flex lg:min-h-screen">
+      <div className="relative hidden min-h-[320px] flex-1 overflow-hidden bg-brand-800 lg:flex lg:min-h-screen">
         <img src={IMAGES.authPanel} alt="" className="absolute inset-0 h-full w-full object-cover opacity-30" />
         <div className="relative z-10 flex flex-1 items-center justify-center p-8 lg:p-12">
           <div className="mx-auto w-full max-w-md">
