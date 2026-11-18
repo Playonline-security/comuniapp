@@ -3,6 +3,7 @@ import { ToastProvider } from '../context/ToastContext';
 import { AuthProvider } from '../context/AuthContext';
 import { ServiceProvider } from '../context/ServiceContext';
 import { ProtectedRoute } from '../components/layout/ProtectedRoute';
+import ScrollToTop from '../components/layout/ScrollToTop';
 import ToastContainer from '../components/common/ToastContainer';
 import WelcomeView from '../views/Welcome/WelcomeView';
 import LoginView from '../views/Auth/LoginView';
@@ -16,6 +17,7 @@ import ProfileEditView from '../views/Profile/ProfileEditView';
 export default function AppRoutes() {
   return (
     <HashRouter>
+      <ScrollToTop />
       <ToastProvider>
         <AuthProvider>
           <ServiceProvider>
