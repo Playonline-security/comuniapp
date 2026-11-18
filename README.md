@@ -174,4 +174,4 @@ Consulta **[TESTING.md](./TESTING.md)** para la estrategia de pruebas, comandos 
 
 ## Licencia y contexto académico
 
-Proyecto desarrollado con fines académicos — **IBERO**, Análisis y diseño de sistemas.
+Proyecto desarrollado con fines académicos — **IBERO**, Análisis y diseño de sistemas - diseño de aplicaciones web.
