@@ -8,9 +8,9 @@ import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
 
 const LOGIN_FEATURES = [
-  { icon: Store, title: 'Servicios Locales', description: 'Accede a más de 500 servicios en Mistrató' },
+  { icon: Store, title: 'Servicios Locales', description: 'Accede a más de 100 productos y servicios' },
   { icon: Users, title: 'Emprendedores Locales', description: 'Apoya la economía de tu municipio' },
-  { icon: HeartHandshake, title: 'Comunidad Unida', description: '1,000+ mistrateños conectados' },
+  { icon: HeartHandshake, title: 'Comunidad Unida', description: '100+ mistratenses conectados' },
 ];
 
 const DEMO_ACCOUNTS = [

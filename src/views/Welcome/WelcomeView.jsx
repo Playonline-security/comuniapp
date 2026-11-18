@@ -177,7 +177,7 @@ export default function WelcomeView() {
           <div className="absolute inset-0 opacity-10 pointer-events-none" aria-hidden />
           <h2 className="text-3xl font-bold text-white sm:text-4xl">¿Listo para unirte a tu comunidad?</h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-brand-100">
-            Más de 1,000 mistrateños ya están conectados. Sé parte del cambio en nuestro municipio.
+            Más de 100 mistratenses ya están conectados. Sé parte del cambio en nuestro municipio.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link to="/registro">
